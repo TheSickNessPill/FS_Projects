@@ -2,7 +2,6 @@ import time
 import random as rd
 import os
 
-
 N = 6
 M = 6
 
@@ -10,7 +9,7 @@ EMPTY_CELL = " "
 SHIP_CELL = "■"
 MISS_CELL = "T"
 HIT_CELL = "X"
-POSITIONS = positions = [
+POSITIONS = [
     (-1, 0), (1, 0),
     (0, -1), (0, 1)
 ]
