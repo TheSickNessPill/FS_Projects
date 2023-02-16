@@ -1,0 +1,12 @@
+{
+    "BTC": "Bitcoin",
+    "ETH": "Ethereum",
+    "XRP": "XRP (Ripple)",
+    "BCH": "Bitcoin Cash",
+    "LTC": "Litecoin",
+    "XLM": "Stellar",
+    "ADA": "Cardano",
+    "IOT": "IOTA",
+    "NEO": "NEO",
+    "XMR": "Monero"
+}
