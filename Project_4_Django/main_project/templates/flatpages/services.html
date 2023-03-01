@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+        <meta name="description" content="" />
+        <meta name="author" content="" />
+        <title>{{ flatpage.title }}</title>
+        <!-- Core theme CSS (includes Bootstrap)-->
+		{% load static %}
+        <link href="{% static 'css/styles.css' %}" rel="stylesheet" />
+    </head>
+    <body id="page-top">
+		<header class="bg-primary bg-gradient text-white">
+            <div class="container px-4 text-center">
+				<h2> {{ flatpage.title }} </h2>
+            </div>
+		</header>
+        <section id="about">
+            <div class="container px-4">
+                <div class="row gx-4 justify-content-center">
+                    <div class="col-lg-8">
+                        <p> {{ flatpage.content }} </p>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </body>
+</html>
