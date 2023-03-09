@@ -1,0 +1,81 @@
+1)
+
+u1 = User.objects.create_user('Alex')
+u2 = User.objects.create_user('Max')
+
+2)
+
+a1 = Author.objects.create(user=u1)
+a2 = Author.objects.create(user=u2)
+
+3)
+
+Category.objects.create(category_name="Games")
+Category.objects.create(category_name="PC")
+Category.objects.create(category_name="Sport")
+Category.objects.create(category_name="IT")
+
+4)
+
+Post.objects.create(post_type="A", post_title="Article_title_1", post_text="Article_text_1", author=a1)
+Post.objects.create(post_type="A", post_title="Article_title_2", post_text="Article_text_2", author=a2)
+
+Post.objects.create(post_type="N", post_title="News_title_1", post_text="News_text_1", author=a1)
+
+5)
+
+Post.objects.get(id=4).post_category.add(Category.objects.get(id=5))
+Post.objects.get(id=5).post_category.add(Category.objects.get(id=6))
+Post.objects.get(id=6).post_category.add(Category.objects.get(id=7))
+Post.objects.get(id=4).post_category.add(Category.objects.get(id=8))
+
+6)
+
+Comment.objects.create(user=u1, post=Post.objects.get(id=4), comment_text="u1_comment_text_1")
+Comment.objects.create(user=u1, post=Post.objects.get(id=5), comment_text="u1_comment_text_2")
+Comment.objects.create(user=u2, post=Post.objects.get(id=6), comment_text="u2_comment_text_1")
+Comment.objects.create(user=u2, post=Post.objects.get(id=4), comment_text="u2_comment_text_2")
+
+7)
+
+Post.objects.get(id=4).like()
+Post.objects.get(id=4).like()
+Post.objects.get(id=5).like()
+Post.objects.get(id=6).dislike()
+
+Comment.objects.get(id=5).dislike()
+Comment.objects.get(id=6).like()
+Comment.objects.get(id=6).like()
+Comment.objects.get(id=7).dislike()
+Comment.objects.get(id=8).like()
+Comment.objects.get(id=8).like()
+Comment.objects.get(id=8).like()
+
+8)
+
+a1.update_rating()
+a2.update_rating()
+
+9)
+
+for author_object in Author.objects.order_by("-rating")[:1]:
+    print(f"Leader username {author_object.user.username} has {author_object.rating} rating points")
+
+10)
+
+for post_object in Post.objects.order_by("-post_rating")[:1]:
+    print(f"post_create_datetime: {post_object.post_create_datetime}")
+    print(f"username: {post_object.author.user.username}")
+    print(f"post_rating: {post_object.post_rating}")
+    print(f"post_title: {post_object.post_title}")
+    print(f"preview: {post_object.preview}")
+
+11)
+
+best_post = Post.objects.order_by("-post_rating")[0]
+for comment_object in Comment.objects.filter(post_id=best_post.id):
+    print(f"comment_id: {comment_object.id}")
+    print(f"comment_date: {comment_object.comment_datetime}")
+    print(f"comment_user: {comment_object.user.username}")
+    print(f"comment_rating: {comment_object.comment_rating}")
+    print(f"comment_text: {comment_object.comment_text}")
