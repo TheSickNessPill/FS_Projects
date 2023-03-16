@@ -1,0 +1,68 @@
+{% extends "flatpages/default.html" %}
+	
+
+{% block title %}
+All News
+{% endblock title %}
+
+{% block content %}
+	<ol>
+		<li> 
+			<p>
+				Создать новую страницу с адресом /news/, на которой должен выводиться список всех новостей.
+			</p>
+			<h1> Список новостей </h1>
+			{% if news %}
+				<h2> {{news}} </h2>
+			{% else %}
+				<h2> Новостей пока что нет... </h2>
+			{% endif %}
+			<hr>
+		</li>
+		<li>
+			<p>
+				Вывести все статьи в виде заголовка, даты публикации и первых 20 символов текста.
+				Новости должны выводиться в порядке от более свежей к самой старой.
+			</p>
+			{% if news %}
+				<table>
+					<tr>
+						<td> id </td>
+						<td> Заголовок </td>
+						<td> Дата публикации </td>
+						<td> Краткий текст </td>
+					</tr>
+					{% for post in news %}
+						<tr>
+							<td> {{post.id}} </td>
+							<td> {{post.post_title}} </td>
+							<td> {{post.post_create_datetime}} </td>
+							<td> {{post.post_text | truncatechars:20}} </td>
+						</tr>
+					{% endfor %}
+				</table>
+			{% else %}
+				<h2> Новостей пока что нет... </h2>
+			{% endif %}
+		</li>
+		<li>
+			<hr>
+			<p>
+				http://127.0.0.1:8000/news/1 - OK [1..3]
+			</p>
+			<p>
+				http://127.0.0.1:8000/news/4 - ERROR
+			</p>
+		</li>
+		<li>
+			<hr>
+			<p>
+				Написать собственный фильтр censor, который заменяет буквы нежелательных слов в заголовках и 
+				текстах статей на символ «*».
+			</p>
+			<p>
+				Слово в бане - "text"
+			</p>
+		</li>
+	</ol>
+{% endblock content %}
