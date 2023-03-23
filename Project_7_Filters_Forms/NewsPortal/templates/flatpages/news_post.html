@@ -1,0 +1,101 @@
+{% extends "flatpages/default.html" %}
+
+{% load custom_tags %}
+
+{% block title %}
+All News
+{% endblock title %}
+
+{% block content %}
+	<h1> Модуль D4. Фильтры и формы [Итоговый проект] </h1>>
+	<ol>
+		<li>
+			<p>
+				Добавьте постраничный вывод на /news/, чтобы на одной странице было не больше 10 новостей и
+				видны номера лишь ближайших страниц, а также возможность перехода к первой или последней странице.
+			</p>
+			{% if news %}
+				<table>
+					<tr>
+						<td> id </td>
+						<td> Заголовок </td>
+						<td> Дата публикации </td>
+						<td> Краткий текст </td>
+					</tr>
+					{% for post in news %}
+						<tr>
+							<td> {{post.id}} </td>
+							<td> {{post.post_title}} </td>
+							<td> {{post.post_create_datetime}} </td>
+							<td> {{post.post_text | truncatechars:20}} </td>
+						</tr>
+					{% endfor %}
+				</table>
+			{% else %}
+				<h2> Новостей пока что нет... </h2>
+			{% endif %}
+
+			{# Добавляем пагинацию на страницу #}
+			{# Информация о предыдущих страницах #}
+			{% if page_obj.has_previous %}
+				<a href="?{% url_replace page=1 %}">1</a>
+				{% if page_obj.previous_page_number != 1 %}
+					...
+					<a href="?{% url_replace page=page_obj.previous_page_number %}">
+						{{ page_obj.previous_page_number }}
+					</a>
+				{% endif %}
+			{% endif %}
+
+			{# Информация о текущей странице #}
+			{{ page_obj.number }}
+
+			{# Информация о следующих страницах #}
+		    {% if page_obj.has_next %}
+			    <a href="?{% url_replace page=page_obj.next_page_number %}">{{ page_obj.next_page_number }}</a>
+			    {% if paginator.num_pages != page_obj.next_page_number %}
+					...
+				    <a href="?{% url_replace page=page_obj.paginator.num_pages %}">{{ page_obj.paginator.num_pages }}</a>
+			    {% endif %}
+		    {% endif %}
+
+		</li>
+		<li>
+			<p>
+				Добавьте страницу /news/search. На ней должна быть реализована возможность искать новости по определённым критериям.
+				Критерии должны быть следующие:
+				<ul>
+					<li> по названию; </li>
+					<li> по категории; </li>
+					<li> позже указываемой даты. </li>
+				</ul>
+			</p>
+			<p>
+				<a href="/news/search"> /news/search </a>
+			</p>
+		</li>
+	</ol>
+
+	<hr>
+
+	<ol>
+		<li>
+			<a href="/news/news/create/"> /news/create/ </a>
+		</li>
+		<li>
+			<a href="/news/1/edit/"> /news/1/edit/ </a>
+		</li>
+		<li>
+			<a href="/news/1/delete/"> /news/1/delete/ </a>
+		</li>
+		<li>
+			<a href="/news/articles/create/"> /articles/create/ </a>
+		</li>
+		<li>
+			<a href="/articles/1/edit/"> /articles/1/edit/ </a>
+		</li>
+		<li>
+			<a href="/articles/1/delete/">/articles/1/delete/ </a>
+		</li>
+	</ol>
+{% endblock content %}
