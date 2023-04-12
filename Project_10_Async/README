@@ -1,0 +1,14 @@
+
+1)Реализовать рассылку уведомлений подписчикам после создания новости
+
+	path: NewsPortal\news\views.py
+	class: [PostCreateArticles, PostCreateNews]
+
+	task: NewsPortal\news\tasks.py	
+	functions: [send_notify_new_post]
+
+2) Реализовать еженедельную рассылку с последними новостями (каждый понедельник в 8:00 утра)
+
+	task: NewsPortal\news\tasks.py	
+	functions: [send_last_week_news]
+	call: NewsPortal\NewsPortal\celery.py
