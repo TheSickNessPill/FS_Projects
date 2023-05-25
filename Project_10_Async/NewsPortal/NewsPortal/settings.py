@@ -188,9 +188,9 @@ EMAIL_HOST_PASSWORD = "joamnrtouevcsigk"
 EMAIL_USE_TLS = False
 EMAIL_USE_SSL = True
 
-DEFAULT_FROM_EMAIL = "example@yandex.ru"
+DEFAULT_FROM_EMAIL = "porquenosaber@yandex.ru"
 
-SERVER_EMAIL = "example@yandex.ru"
+SERVER_EMAIL = "eporquenosaber@yandex.ru"
 MANAGERS = (
     ('Ivan', 'porquenosaber@yandex.ru'),
     ('Petr', 'porquenosaber@yandex.ru'),

@@ -24,32 +24,32 @@ Post.objects.create(post_type="N", post_title="News_title_1", post_text="News_te
 
 5)
 
-Post.objects.get(id=4).post_category.add(Category.objects.get(id=5))
-Post.objects.get(id=5).post_category.add(Category.objects.get(id=6))
-Post.objects.get(id=6).post_category.add(Category.objects.get(id=7))
-Post.objects.get(id=4).post_category.add(Category.objects.get(id=8))
+Post.objects.get(id=1).post_category.add(Category.objects.get(id=1))
+Post.objects.get(id=2).post_category.add(Category.objects.get(id=2))
+Post.objects.get(id=3).post_category.add(Category.objects.get(id=3))
+Post.objects.get(id=1).post_category.add(Category.objects.get(id=4))
 
 6)
 
-Comment.objects.create(user=u1, post=Post.objects.get(id=4), comment_text="u1_comment_text_1")
-Comment.objects.create(user=u1, post=Post.objects.get(id=5), comment_text="u1_comment_text_2")
-Comment.objects.create(user=u2, post=Post.objects.get(id=6), comment_text="u2_comment_text_1")
-Comment.objects.create(user=u2, post=Post.objects.get(id=4), comment_text="u2_comment_text_2")
+Comment.objects.create(user=u1, post=Post.objects.get(id=1), comment_text="u1_comment_text_1")
+Comment.objects.create(user=u1, post=Post.objects.get(id=2), comment_text="u1_comment_text_2")
+Comment.objects.create(user=u2, post=Post.objects.get(id=3), comment_text="u2_comment_text_1")
+Comment.objects.create(user=u2, post=Post.objects.get(id=1), comment_text="u2_comment_text_2")
 
 7)
 
-Post.objects.get(id=4).like()
-Post.objects.get(id=4).like()
-Post.objects.get(id=5).like()
-Post.objects.get(id=6).dislike()
+Post.objects.get(id=1).like()
+Post.objects.get(id=1).like()
+Post.objects.get(id=2).like()
+Post.objects.get(id=3).dislike()
 
-Comment.objects.get(id=5).dislike()
-Comment.objects.get(id=6).like()
-Comment.objects.get(id=6).like()
-Comment.objects.get(id=7).dislike()
-Comment.objects.get(id=8).like()
-Comment.objects.get(id=8).like()
-Comment.objects.get(id=8).like()
+Comment.objects.get(id=1).dislike()
+Comment.objects.get(id=2).like()
+Comment.objects.get(id=2).like()
+Comment.objects.get(id=3).dislike()
+Comment.objects.get(id=4).like()
+Comment.objects.get(id=4).like()
+Comment.objects.get(id=4).like()
 
 8)
 
