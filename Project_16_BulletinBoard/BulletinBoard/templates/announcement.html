@@ -1,0 +1,48 @@
+<!--  наследуемся от шаблона default.html, который мы создавали для flatpages -->
+{% extends 'flatpages/default.html' %}
+
+<!-- Название у нас будет Product -->
+{% block title %}
+ {{announcement.title}}
+{% endblock title %}
+
+<!-- В контенте на странице мы выводим сам товар, идентификатор которого был передан в url -->
+{% block content %}
+    <a href="/announcements"> <h3> Back to announcements list </h3> </a>
+    <table>
+        <tr>
+            <td> Id </td>
+            <td> User</td>
+            <td> Category </td>
+            <td> Title </td>
+            <td> Text </td>
+            <td> Photo </td>
+        </tr>
+        <tr>
+            <td> {{announcement.id}} </td>
+            <td> {{announcement.by_user.username}} </td>
+            <td> {{announcement.category}} </td>
+            <td> {{announcement.title}} </td>
+            <td> {{announcement.text | truncatechars:20}} </td>
+            <!--<td> <img src="announcement.attachment.url"></a> </td> -->
+        </tr>
+    </table>
+
+    {% if request.user.is_authenticated %}
+        <hr>
+        <table>
+            <tr>
+                <td>
+                    {% if request.user.id == announcement.by_user.id %}
+                    <a href="/announcements/{{announcement.id}}/edit"> <h3> Edit announcement </h3> </a>
+                    {% endif%}
+                </td>
+                <td>
+                    <a href="/announcements/{{announcement.id}}/create_response"> <h3> Create responce </h3> </a>
+                </td>
+            </tr>
+        </table>
+        <hr>
+    {% endif %}
+{% endblock content %}
+

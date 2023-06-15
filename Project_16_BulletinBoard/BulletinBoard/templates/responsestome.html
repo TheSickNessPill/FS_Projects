@@ -1,0 +1,81 @@
+{% extends 'flatpages/default.html' %}
+
+{% load custom_tags %}
+
+{% block title %}
+    Responses to you
+{% endblock title %}
+
+
+{% block content %}
+
+    <hr>
+    <form action="" method="get">
+        {# Переменная, которую мы передали через контекст, может сгенерировать нам форму с полями #}
+        {{ filterset.form.as_p }}
+        {# Добавим кнопку отправки данных формы #}
+        <input type="submit" value="Найти" />
+    </form>
+    <hr>
+
+    <a href="/announcements"> Back to announcements list </a>
+
+    <h1>[Responses list to you]</h1>
+    {% if responsestome %}
+        <table>
+            <tr>
+                <td> Announcement id </td>
+                <td> Announcement title </td>
+                <td> Response id </td>
+                <td> Response Text </td>
+                <td> Create time </td>
+                <td> Is accepted </td>
+                <td></td>
+                <td></td>
+            </tr>
+            {{responce.is_accepted}}
+            {% for response in responsestome %}
+                <tr>
+                    <td> {{response.announcement.id}} </td>
+                    <td> {{response.announcement.title}} </td>
+                    <td> {{response.id}} </td>
+                    <td> {{response.text}} </td>
+                    <td> {{response.create_time}} </td>
+                    <td> {{response.is_accepted}} </td>
+                    {% if response.is_accepted %}
+                        <td></td>
+                    {% else %}
+                        <td> <a href="{{response.id}}/accept"> Accept </a> </td>
+                    {% endif %}
+                    <td> <a href="{{response.id}}/delete"> Delete </a> </td>
+                </tr>
+            {% endfor %}
+        </table>
+
+        {# Информация о предыдущих страницах #}
+        {% if page_obj.has_previous %}
+            <a href="?{% url_replace page=1 %}">1</a>
+            {% if page_obj.previous_page_number != 1 %}
+                ...
+                <a href="?{% url_replace page=page_obj.previous_page_number %}">{{ page_obj.previous_page_number }}</a>
+            {% endif %}
+        {% endif %}
+
+        {# Информация о текущей странице #}
+        {{ page_obj.number }}
+
+        {# Информация о следующих страницах #}
+        {% if page_obj.has_next %}
+            <a href="?{% url_replace page=page_obj.next_page_number %}">{{ page_obj.next_page_number }}</a>
+            {% if paginator.num_pages != page_obj.next_page_number %}
+                ...
+                <a href="?{% url_replace page=page_obj.paginator.num_pages %}">{{ page_obj.paginator.num_pages }}</a>
+            {% endif %}
+        {% endif %}
+
+    {% else %}
+        <h3> No responses to you at this moment </h3>
+    {% endif %}
+
+
+{% endblock content %}

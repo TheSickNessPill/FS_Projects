@@ -1,0 +1,29 @@
+<!--  наследуемся от шаблона default.html, который мы создавали для flatpages -->
+{% extends 'flatpages/default.html' %}
+
+<!-- Название у нас будет Product -->
+{% block title %}
+    Responce - {{responsetome.id}}
+{% endblock title %}
+
+<!-- В контенте на странице мы выводим сам товар, идентификатор которого был передан в url -->
+{% block content %}
+    <a href="/announcements"> <h3> Back to announcements list </h3> </a>
+    <table>
+        <tr>
+            <td> Id </td>
+            <td> Announcement title</td>
+            <td> text </td>
+            <td> create_time </td>
+            <td> by_user </td>
+        </tr>
+        <tr>
+            <td> {{responsetome.id}} </td>
+            <td> {{responsetome.announcement.title}} </td>
+            <td> {{responsetome.text}} </td>
+            <td> {{responsetome.create_time}} </td>
+            <td> {{responsetome.by_user}} </td>
+            <!--<td> <img src="announcement.attachment.url"></a> </td> -->
+        </tr>
+    </table>
+{% endblock content %}

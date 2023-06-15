@@ -1,0 +1,15 @@
+{% extends 'flatpages/default.html' %}
+
+{% block title %}
+    Responce [{{response.id}}]
+{% endblock title %}
+
+{% block content %}
+<h1>Deleting announcement responce [{{response.id}}]</h1>
+<hr>
+<form action="" method="post">
+    {% csrf_token %}
+    <p>Delete responce with id - "{{ response.id }}"?</p>
+    <input type="submit" value="Delete" />
+</form>
+{% endblock content %}

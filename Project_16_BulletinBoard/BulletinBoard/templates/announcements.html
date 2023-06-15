@@ -1,0 +1,85 @@
+{% extends 'flatpages/default.html' %}
+
+{% load custom_tags %}
+
+{% block title %}
+    Announcements
+{% endblock title %}
+
+
+{% block content %}
+    <h1> LOGIN: porquenosaber@yandex.ru | PASSWORD: Q1_w2e3r4 </h1>
+    <hr>
+    <form action="" method="get">
+        {# Переменная, которую мы передали через контекст, может сгенерировать нам форму с полями #}
+        {{ filterset.form.as_p }}
+        {# Добавим кнопку отправки данных формы #}
+        <input type="submit" value="Найти" />
+    </form>
+    <hr>
+    {% if request.user.is_authenticated %}
+        <table>
+            <tr>
+                <td>
+                    <a href="subscriptions/"> Subscriptions </a>
+                </td>
+                <td>
+                    <a href="create/"> Create Announcement</a>
+                </td>
+                <td>
+                    <a href="responsestome/"> Responce to my announcements</a>
+                </td>
+            </tr>
+        </table>
+    {% endif %}
+    <h1>[Announcements list]</h1>
+    {% if announcements %}
+        <table>
+            <tr>
+                <td> Id </td>
+                <td> User</td>
+                <td> Category </td>
+                <td> Title </td>
+                <td> Text </td>
+                <td> Create time</td>
+            </tr>
+            {% for announcement in announcements %}
+                <tr>
+                    <td>
+                        <a href="{{announcement.id}}">{{announcement.id}}</a>
+                    </td>
+                    <td> {{announcement.by_user.username}} </td>
+                    <td> {{announcement.category}} </td>
+                    <td> {{announcement.title}} </td>
+                    <td> {{announcement.text | truncatechars:20}} </td>
+                    <td> {{announcement.create_time}} </td>
+                </tr>
+            {% endfor %}
+        </table>
+
+        {# Информация о предыдущих страницах #}
+        {% if page_obj.has_previous %}
+            <a href="?{% url_replace page=1 %}">1</a>
+            {% if page_obj.previous_page_number != 1 %}
+                ...
+                <a href="?{% url_replace page=page_obj.previous_page_number %}">{{ page_obj.previous_page_number }}</a>
+            {% endif %}
+        {% endif %}
+
+        {# Информация о текущей странице #}
+        {{ page_obj.number }}
+
+        {# Информация о следующих страницах #}
+        {% if page_obj.has_next %}
+            <a href="?{% url_replace page=page_obj.next_page_number %}">{{ page_obj.next_page_number }}</a>
+            {% if paginator.num_pages != page_obj.next_page_number %}
+                ...
+                <a href="?{% url_replace page=page_obj.paginator.num_pages %}">{{ page_obj.paginator.num_pages }}</a>
+            {% endif %}
+        {% endif %}
+
+    {% else %}
+        <h3> No announcements at this moment </h3>
+    {% endif %}
+
+{% endblock content %}
