@@ -1,0 +1,137 @@
+{% extends "flatpages/default.html" %}
+
+{% load i18n %}
+{% load custom_tags %}
+
+{% block title %}
+All News
+{% endblock title %}
+
+{% block content %}
+	<h2> <a href="/accounts/login"> {% trans "Log in" %} </a> </h2>
+	<h2> <a href="/accounts/logout"> {% trans "Log out" %} </a> </h2>
+	<ol>
+		<li>
+			<h3> {% trans "List of news" %} </h3>
+			{% if news %}
+				<table>
+					<tr>
+						<td> id </td>
+						<td> {% trans "Title" %} </td>
+						<td> {% trans "Date" %} </td>
+						<td> {% trans "Short text" %} </td>
+					</tr>
+					{% for post in news %}
+						<tr>
+							<td> {{post.id}} </td>
+							<td> {{post.post_title}} </td>
+							<td> {{post.post_create_datetime}} </td>
+							<td> {{post.post_text | truncatechars:20}} </td>
+						</tr>
+					{% endfor %}
+				</table>
+			{% else %}
+				<h2> {% trans "No news at this moment" %} </h2>
+			{% endif %}
+
+			{# Добавляем пагинацию на страницу #}
+			{# Информация о предыдущих страницах #}
+			{% if page_obj.has_previous %}
+				<a href="?{% url_replace page=1 %}">1</a>
+				{% if page_obj.previous_page_number != 1 %}
+					...
+					<a href="?{% url_replace page=page_obj.previous_page_number %}">
+						{{ page_obj.previous_page_number }}
+					</a>
+				{% endif %}
+			{% endif %}
+
+			{# Информация о текущей странице #}
+			{{ page_obj.number }}
+
+			{# Информация о следующих страницах #}
+		    {% if page_obj.has_next %}
+			    <a href="?{% url_replace page=page_obj.next_page_number %}">{{ page_obj.next_page_number }}</a>
+			    {% if paginator.num_pages != page_obj.next_page_number %}
+					...
+				    <a href="?{% url_replace page=page_obj.paginator.num_pages %}">{{ page_obj.paginator.num_pages }}</a>
+			    {% endif %}
+		    {% endif %}
+
+		</li>
+		<hr>
+		<li>
+			<h3> {% trans "Find news" %} </h3>
+			<p>
+				<a href="/news/search"> ПОИСК </a>
+			</p>
+		</li>
+	</ol>
+
+	<hr>
+
+	{% if not perms.news.add_post %}
+		<h3> {% trans "Login to acc [test@test.test Q1_w2e3r4t5]" %} </h3>
+	{% endif %}
+	<ol>
+		{% if perms.news.add_post %}
+			<li>
+				<a href="/news/news/create/"> Создать Новость </a>
+			</li>
+		{% else %}
+			<li>
+				<p> Тут могло бы быть создание новости </p>
+			</li>
+		{% endif %}
+
+		{% if perms.news.change_post %}
+			<li>
+				<a href="/news/1/edit/"> Отредактировать 1ю новость </a>
+			</li>
+		{% else %}
+			<li>
+				<p> Тут могло бы быть редактирование 1й новости </p>
+			</li>
+		{% endif %}
+
+		{% if perms.news.change_post %}
+		<li>
+			<a href="/news/1/delete/"> Удалить 1ю новость </a>
+		</li>
+		{% else %}
+			<li>
+				<p> Тут могло бы быть удаление 1й новости </p>
+			</li>
+		{% endif %}
+
+		{% if perms.news.change_post %}
+		<li>
+			<a href="/news/articles/create/"> Создать статью</a>
+		</li>
+		{% else %}
+			<li>
+				<p> Тут могло бы быть создание статьи </p>
+			</li>
+		{% endif %}
+
+		{% if perms.news.change_post %}
+		<li>
+			<a href="/news/articles/1/edit/"> Отредактировать 1ю статью </a>
+		</li>
+		{% else %}
+			<li>
+				<p> Тут могло бы быть редактирование 1й статьи </p>
+			</li>
+		{% endif %}
+
+		{% if perms.news.change_post %}
+		<li>
+			<a href="/news/articles/1/delete/"> Удалить 1ю статью </a>
+		</li>
+		{% else %}
+			<li>
+				<p> Тут могло бы быть удаление 1й статьи </p>
+			</li>
+		{% endif %}
+	</ol>
+{% endblock content %}
