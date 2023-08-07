@@ -1,0 +1,70 @@
+{% extends 'flatpages/default.html' %}
+
+{% load static %}
+
+{% block title %} Start Page {% endblock title %}
+
+{% block content %}
+    <div class="start-page-container">
+        <aside class="dialogs-aside">
+            <div class="dialogs-aside-head">
+                <p> DIALOGS </p>
+            </div>
+            <div class="dialogs-aside-body">
+                {% for dialog in dialog_list %}
+                    <div class="dialogs-aside-dialog-name">
+                        <a style="font-size:20px;" href="?dialog_name={{dialog.member.username}}"> {{dialog.member.username}} </a>
+                    </div>
+                {% endfor %}
+            </div>
+        </aside>
+
+        <section class="chat-main">
+            <div class="chat-main-head">
+                {% if dialog_name %}
+                    <p style="font-size:20px;"> Dialog: {{dialog_name}} </p>
+                {% elif chat_name %}
+                    <p style="font-size:20px;"> Chat: {{chat_name}} </p>
+                {% endif %}
+            </div>
+            <div class="chat-main-body">
+                <div class="messages-container">
+                    {% if chat_messages %}
+                        {% for chat_message in chat_messages %}
+                        <div class="message-container">
+                            <p> {{chat_message.0}} </p>
+                            <p> {{chat_message.1}} </p>
+                            <p> {{chat_message.2}} </p>
+                        <div>
+                        {% endfor %}
+                    {% elif dialog_messages %}
+                        {% for dialog_message in dialog_messages %}
+                        <div class="message-container">
+                            <p> {{dialog_message.0}} </p>
+                            <p> {{dialog_message.1}} </p>
+                            <p> {{dialog_message.2}} </p>
+                        <div>
+                        {% endfor %}
+                    {% endif %}
+                </div>
+                <div class="sent-text-container">
+                    <textarea class="send-text-field" type="text" maxlength="300"></textarea>
+                    <button class="send_text_button"> SEND MESSAGE </button>
+                </div>
+            </div>
+        </section>
+
+        <aside class="chats-aside">
+            <div class="chats-aside-head">
+                <p> CHATS </p>
+            </div>
+            <div class="chat-aside-body">
+                {% for chat in chat_list %}
+                    <div class="dialogs-aside-dialog-name">
+                        <a style="font-size:20px;" href="?chat_name={{chat.chat_name}}"> {{chat.chat_name}} </a>
+                    </div>
+                {% endfor %}
+            </div>
+        </aside>
+    </div>
+{% endblock content %}

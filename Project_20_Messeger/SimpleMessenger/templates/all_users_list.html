@@ -1,0 +1,33 @@
+{% extends 'flatpages/default_main.html' %}
+
+{% block title %} All users {% endblock title %}
+
+{% block content %}
+    <div class="create-dialog-container">
+        <button class="create-dialog-button"> Create dialog </button>
+    </div>
+    <a href="/messenger"> Back to messenger </a>
+    <h1 style="text-align: center;"> ALL USERS </h1>
+    {% for user in allusers %}
+        <p style="text-align: center;"> {{user.id}} - {{user.username}} </p>
+    {% endfor%}
+
+        {% if page_obj.has_previous %}
+            <a style="text-align: center;" href="?page=1"> 1 </a>
+            {% if page_obj.previous_page_number != 1 %}
+                ...
+                <a style="text-align: center;" href="?page={{ page_obj.previous_page_number }}">{{ page_obj.previous_page_number }}</a>
+            {% endif %}
+        {% endif %}
+
+        <p style="text-align: center;">{{ page_obj.number }} </p>
+
+        {% if page_obj.has_next %}
+            <a style="text-align: center;" href="?page={{ page_obj.next_page_number }}">{{ page_obj.next_page_number }}</a>
+            {% if paginator.num_pages != page_obj.next_page_number %}
+                ...
+                <a style="text-align: center;" href="?page={{ page_obj.paginator.num_pages }}">{{ page_obj.paginator.num_pages }}</a>
+        {% endif %}
+    {% endif %}
+
+{% endblock content %}

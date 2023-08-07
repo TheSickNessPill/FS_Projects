@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+
+<html lang="en">
+    <head>
+        <meta charset="utf-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+        <meta name="description" content="" />
+        <meta name="author" content="" />
+        <title>
+			{% block title %}
+			{% endblock title %}
+		</title>
+        <!-- Favicon-->
+		{% load static %}
+        <!-- Core theme CSS (includes Bootstrap)-->
+        <link href="{% static 'css/styles.css' %}" rel="stylesheet" />
+        <script defer src="{% static 'js/js_functions.js' %}"></script>
+    </head>
+    <body>
+        {% if request.user.is_authenticated %}
+            <header class="header-main">
+                <div class="header-user">
+                    <p> Logged by: </p>
+                    <a href="/accounts/{{user}}"> {{user}} </a>
+                </div>
+                <button class="logout-button">
+                    <a href="/accounts/logout"> LOGOUT </a>
+                </button>
+            </header>
+            <hr>
+            {% block content %}
+            {% endblock content %}
+            <footer>
+                <div class="footer-buttons-conteiner">
+                    <div class="create-dialog-container">
+                        <button class="create-dialog-button"> Create dialog </button>
+                    </div>
+                    <div class="delete-dialog-container">
+                        <button class="delete-dialog-button"> Delete dialog </button>
+                    </div>
+                    <div class="create-chat-container">
+                        <button class="create-chat-button"> Create chat </button>
+                    </div>
+                    <div class="edit-chat-container">
+                        <button class="edit-chat-button"> Edit chat </button>
+                    </div>
+                    <div class="delete-chat-container">
+                        <button class="delete-chat-button"> Delete chat </button>
+                    </div>
+                    <div class="all-users-container">
+                        <a class="all-users", href="allusers/"> All users </a>
+                    </div>
+                </div>
+            </footer>
+        {% else %}
+            <div class="login-signup-container">
+                <div class="login-signup-text-container">
+                    <p> Please, login or signup to use messenger </p>
+                </div>
+                <div class="login-button-container">
+                    <button class="login-button"> <a href="/accounts/login"> LOGIN </a> </button>
+                </div>
+                <div class="signup-button-container">
+                    <button class="signup-button"> <a href="/accounts/signup"> SIGNUP </a> </button>
+                </div>
+            </div>
+        {% endif %}
+    </body>
+</html>
