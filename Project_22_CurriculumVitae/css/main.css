@@ -1,0 +1,269 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@300;400&display=swap');
+
+html{
+    font-family: 'Roboto', sans-serif;
+}
+
+.block-wrapper {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, 1fr);
+    grid-template-rows: auto;
+}
+
+.block0 {
+    text-align: center;
+    background-color: hsl(28, 100%, 89%);
+}
+
+.block1 {
+    overflow: hidden;
+    display: flex;
+    height: 300px;
+    width: 100%;
+}
+
+.block1-back, .block1-front {
+    transition: all 0.5s;
+    float: left;
+    width: 100%;
+}
+
+.block1:hover .block1-back {
+    width: 100%;
+}
+
+.block1:hover .block1-front {
+    width: 0;
+}
+
+.block1 .block1-front {
+    width: 100%;
+}
+
+.block1 .block1-back {
+    width: 0;
+}
+
+
+.block1-front{
+    background-color: rgb(185, 255, 193);
+    text-align: center;
+}
+
+.block1-front .block1-front-text{
+    width: 100%;
+}
+
+.block1-front .block1-front-text p{
+    margin-top: 100px;
+    font-size: 35px;
+    font-weight: 600;
+    text-decoration: underline;
+}
+
+.block1-back {
+    background-color: rgb(185, 255, 193);
+    display: flex;
+    width: 100%;
+}
+
+.block1-back .block1-back-text {
+    width: 100%;
+}
+
+.block1-back .photo-main {
+    align-self: center;
+    margin-left: 1%;
+    width: 200px;
+    height: 250px;
+}
+
+.block1-back .block1-back-text p{
+    font-size: 25px;
+    text-align: center;
+}
+
+
+.block1-back .block1-back-text p span{
+    font-size: 30px;
+    text-decoration: underline;
+    font-style: italic;
+}
+
+.block2 {
+    background-color: rgb(158, 255, 240);
+    overflow: hidden;
+    display: flex;
+    height: 100px;
+    width: 100%;
+}
+
+.block2 .block2-front-text{
+    text-align: center;
+    font-size: 30px;
+    text-decoration: underline;
+    font-weight: 600;
+}
+
+.block2 .block2-front{
+    transition: all 0.5s;
+    float: left;
+    width: 100%;
+}
+
+.block2:hover .block2-front{
+    width: 0;
+    z-index: -1;
+}
+
+.block2 .block2-back{
+    float: left;
+    width: 0;
+}
+
+.block2:hover .block2-back{
+    width: 100%;
+}
+
+.block2-back .block2-back-text p {
+    font-size: 20px;
+    text-align: center;
+}
+
+
+.block3 {
+    background-color: rgb(227, 196, 255);
+    overflow: hidden;
+    display: flex;
+    height: 300px;
+    width: 100%;
+}
+
+.block3 .block3-back, .block3-back-text {
+    height: 100%;
+}
+
+.block3-back-text .education {
+    width: 60%;
+    height: 100%;
+}
+
+.block3-back-text .work-experience {
+    width: 40%;
+    height: 100%;
+}
+
+.block3-back-text{
+    display: flex;
+}
+
+.block3-front {
+    text-align: center;
+}
+
+.block3-front, .block3-back {
+    transition: all 0.5s;
+    float: left;
+    width: 100%;
+}
+
+.block3:hover .block3-back{
+    width: 100%;
+    z-index: 1;
+    display: block;
+}
+
+.block3:hover .block3-front{
+    width: 0;
+    z-index: -1
+}
+
+.block3-front .block3-front-text {
+    width: 100%;
+}
+
+.block3 .block3-back{
+    display: none;
+}
+
+.block3 .block3-front-text{
+    text-align: center;
+    font-size: 30px;
+    text-decoration: underline;
+    font-weight: 600;
+}
+
+.block3-back-text p {
+    font-size: 30px;
+    text-decoration: underline;
+    font-style: italic;
+}
+
+
+.block4 {
+    background-color: rgb(251, 255, 198);
+    overflow: hidden;
+    display: flex;
+    height: 350px;
+    width: 100%;
+}
+
+.block4 .block4-back, .block4-back-text {
+    height: 100%;
+}
+
+.block4-back-text .skills {
+    width: 50%;
+    height: 100%;
+}
+
+.block4-back-text .personal-qualities {
+    width: 50%;
+    height: 100%;
+}
+
+.block4-back-text{
+    display: flex;
+}
+
+.block4-front {
+    text-align: center;
+}
+
+.block4-front, .block4-back {
+    transition: all 0.5s;
+    float: left;
+    width: 100%;
+}
+
+.block4:hover .block4-back{
+    width: 100%;
+    z-index: 1;
+    display: block;
+}
+
+.block4:hover .block4-front{
+    width: 0;
+    z-index: -1
+}
+
+.block4-front .block4-front-text {
+    width: 100%;
+}
+
+.block4 .block4-back{
+    display: none;
+}
+
+.block4 .block4-front-text{
+    text-align: center;
+    font-size: 30px;
+    text-decoration: underline;
+    font-weight: 600;
+}
+
+.block4-back-text p {
+    font-size: 30px;
+    text-decoration: underline;
+    font-style: italic;
+}
