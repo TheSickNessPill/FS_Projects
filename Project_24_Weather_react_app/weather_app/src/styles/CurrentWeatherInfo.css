@@ -1,0 +1,106 @@
+.weather-info-body{
+    display:grid;
+    grid-template-columns: 700px;
+    justify-content: center;
+    align-items: center;
+}
+
+.weather-clouds-info{
+    border: solid 1px;
+    display: flex;
+    justify-content: left;
+    align-items: center;
+    margin-top: 0;
+    margin-bottom: 0;
+    margin-left: 10px;
+    margin-right: 10px;
+}
+
+.clouds-info{
+    font-size: 40px;
+    text-align: center;
+    margin-top: 0;
+    margin-bottom: 0;
+}
+
+.clouds-title{
+    font-size: 40px;
+    text-align: center;
+    text-decoration: underline;
+    margin-top: 0;
+    margin-bottom: 0;
+    margin-right: 10px;
+}
+
+.weather-wind-info{
+    border: solid 1px;
+    display: flex;
+    justify-content: left;
+    align-items: center;
+    margin-top: 0;
+    margin-bottom: 0;
+    margin-left: 10px;
+    margin-right: 10px;
+}
+
+.wind-info{
+    font-size: 40px;
+    text-align: center;
+    margin-top: 0;
+    margin-bottom: 0;
+}
+
+.wind-title{
+    font-size: 40px;
+    text-align: center;
+    text-decoration: underline;
+    margin-top: 0;
+    margin-bottom: 0;
+    margin-right: 10px;
+}
+
+.weather-temperature-info{
+    border: solid 1px;
+    display: flex;
+    justify-content: left;
+    align-items: center;
+    margin-top: 0;
+    margin-bottom: 0;
+    margin-left: 10px;
+    margin-right: 10px;
+}
+
+.temperature-info{
+    font-size: 40px;
+    text-align: center;
+    margin-top: 0;
+    margin-bottom: 0;
+}
+
+.temperature-title{
+    font-size: 17px;
+    text-align: center;
+    text-decoration: underline;
+    margin-top: 0;
+    margin-bottom: 0;
+    margin-right: 10px;
+}
+
+.temperature-table{
+    table-layout: fixed;
+    width: 100%;
+    border-collapse: collapse;
+}
+
+.temperature-table th {
+    text-align: center;
+    margin-right: 0;
+    margin-left: 0;
+}
+
+.temperature-table td {
+    text-align: center;
+    font-size: 20px;
+    margin-right: 0;
+    margin-left: 0;
+}
